@@ -1,80 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Downloader</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R7 Football News</title>
 
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            width: 350px;
-            text-align: center;
-        }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            box-sizing: border-box;
-        }
+body{
+background:#f5f5f5;
+}
 
-        button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            border: none;
-            background: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+header{
+background:#0d47a1;
+color:white;
+padding:20px;
+text-align:center;
+}
 
-        button:hover {
-            background: #0056b3;
-        }
+nav{
+background:#1565c0;
+display:flex;
+justify-content:center;
+gap:20px;
+padding:15px;
+flex-wrap:wrap;
+}
 
-        #hasil {
-            margin-top: 20px;
-            color: green;
-        }
-    </style>
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+background:#1e88e5;
+color:white;
+padding:60px 20px;
+text-align:center;
+}
+
+.hero h2{
+font-size:35px;
+margin-bottom:10px;
+}
+
+.search{
+text-align:center;
+margin:30px;
+}
+
+.search input{
+width:90%;
+max-width:500px;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 3px 10px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-content{
+padding:15px;
+}
+
+.card-content h3{
+margin-bottom:10px;
+color:#0d47a1;
+}
+
+button{
+background:#1565c0;
+color:white;
+padding:10px 15px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0d47a1;
+}
+
+footer{
+margin-top:40px;
+background:#0d47a1;
+color:white;
+padding:20px;
+text-align:center;
+}
+</style>
+
 </head>
 <body>
 
-<div class="container">
-    <h2>Video Downloader</h2>
+<header>
+<h1>⚽ R7 Football News</h1>
+<p>Berita Sepak Bola Terbaru</p>
+</header>
 
-    <input type="text" id="link" placeholder="Masukkan URL video">
+<nav>
+<a href="#">Beranda</a>
+<a href="#">Liga Inggris</a>
+<a href="#">Liga Champions</a>
+<a href="#">Transfer</a>
+<a href="#">Timnas</a>
+</nav>
 
-    <button onclick="proses()">Proses</button>
+<section class="hero">
+<h2>Selamat Datang</h2>
+<p>Portal berita sepak bola sederhana buatan Rian.</p>
+</section>
 
-    <p id="hasil"></p>
+<div class="search">
+<input type="text" id="cari" placeholder="Cari berita...">
 </div>
 
+<div class="container">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=800" alt="">
+<div class="card-content">
+<h3>Portugal Lolos ke Babak Berikutnya</h3>
+<p>Portugal tampil meyakinkan dan berhasil meraih kemenangan penting.</p>
+<button>Baca Selengkapnya</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" alt="">
+<div class="card-content">
+<h3>Transfer Musim Panas Memanas</h3>
+<p>Beberapa klub besar Eropa mulai berburu pemain baru.</p>
+<button>Baca Selengkapnya</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=800" alt="">
+<div class="card-content">
+<h3>Liga Champions Pekan Ini</h3>
+<p>Pertandingan seru akan tersaji pada babak berikutnya.</p>
+<button>Baca Selengkapnya</button>
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 R7 Football News
+</footer>
+
 <script>
-function proses() {
-    let link = document.getElementById("link").value;
+const cari=document.getElementById("cari");
 
-    if(link === ""){
-        alert("Masukkan URL terlebih dahulu!");
-        return;
-    }
+cari.addEventListener("keyup",function(){
 
-    document.getElementById("hasil").innerHTML =
-    "URL diterima: <br><b>" + link + "</b><br><br>Silakan hubungkan ke API milik Anda.";
-}
+let filter=cari.value.toLowerCase();
+
+let card=document.querySelectorAll(".card");
+
+card.forEach(function(item){
+
+let text=item.innerText.toLowerCase();
+
+item.style.display=text.includes(filter)?"block":"none";
+
+});
+
+});
 </script>
 
 </body>
